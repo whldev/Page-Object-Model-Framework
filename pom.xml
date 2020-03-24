@@ -9,23 +9,24 @@
     <version>0.0.1</version>
 
     <properties>
-        <cucumber.version>1.2.0</cucumber.version>
-        <picocontainer.version>2.15</picocontainer.version>
+        <cucumber.version>4.5.1</cucumber.version>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
