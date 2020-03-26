@@ -1,4 +1,4 @@
-package pages;
+package com.planittesting.jupitertoys.model.pages;
 
 import org.openqa.selenium.WebDriver;
 

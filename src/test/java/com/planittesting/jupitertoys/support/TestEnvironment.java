@@ -1,4 +1,4 @@
-package support;
+package com.planittesting.jupitertoys.support;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,3 +32,12 @@ public class TestEnvironment {
     }
 
 }
+
+
+//another option:
+/*
+create a class that represent product. create map in test,
+    - CartDetails.class
+        - list<ItemDetails> price, quantity
+    - ItemDetails.class
+ */
