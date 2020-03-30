@@ -49,28 +49,22 @@ public class BaseJupiterToysPage extends BasePage {
     }
 
     public void checkCartCount(CartDetails cartDetails) {
-        boolean isCartCountMatch = driver.findElement(CART_BUTTON).findElement(CART_COUNT).getText().equals(cartDetails.getCartCount());
-        Assert.assertTrue(isCartCountMatch, "Cart count does not match");
+        Assert.assertEquals(driver.findElement(CART_BUTTON).findElement(CART_COUNT).getText(), cartDetails.getCartCount(), "Cart count does not match");
     }
 
     public void checkLoginUser(String expectedUserName) {
-        boolean isUserNameMatch = driver.findElement(USER_BUTTON).getAttribute("innerText").trim().equals(expectedUserName);
-        Assert.assertTrue(isUserNameMatch, "Login user name does not match");
+        Assert.assertEquals(driver.findElement(USER_BUTTON).getText().trim(), expectedUserName, "Login user name does not match");
     }
 
     public void clickButton(String buttonName) {
         List<WebElement> buttons = driver.findElements(By.className("btn"));
-        boolean isFound = false;
         for (WebElement button : buttons) {
             if (button.getText().trim().equalsIgnoreCase(buttonName)) {
                 button.click();
-                isFound = true;
-                break;
+                return;
             }
         }
-        if(!isFound) {
-            throw new IllegalArgumentException("Button " + buttonName + " does not exist");
-        }
+        throw new IllegalArgumentException("Button " + buttonName + " does not exist");
     }
 
 }

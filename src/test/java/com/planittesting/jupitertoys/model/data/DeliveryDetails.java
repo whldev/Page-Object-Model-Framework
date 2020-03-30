@@ -7,6 +7,14 @@ public class DeliveryDetails {
     private String telephone;
     private String address;
 
+    public DeliveryDetails() {
+        this.forename = "Foo";
+        this.surname = "Bar";
+        this.email = "foo@abc.com";
+        this.telephone = "0123456789";
+        this.address = "1 Zelda St, Hyrule";
+    }
+
     public DeliveryDetails setForename(String forename) {
         this.forename = forename;
         return this;

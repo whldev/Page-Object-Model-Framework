@@ -13,6 +13,8 @@ public class Table {
         this.tableElement = tableElement;
     }
 
+    public WebElement getTableElement() { return this.tableElement; }
+
     public List<WebElement> getTableRows() {
         return tableElement.findElements(By.cssSelector("tbody tr"));
     }

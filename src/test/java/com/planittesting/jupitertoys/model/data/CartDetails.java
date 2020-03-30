@@ -18,15 +18,13 @@ public class CartDetails {
 
     public List<ItemDetails> getBoughtProducts() { return this.boughtProducts; }
 
-    public String getTotalPrice() { return this.totalPrice; }
-
-    public Double calculateTotalPrice() {
+    public String getTotalPrice() {
         Double totalPrice = 0.0;
         for (ItemDetails itemDetails : boughtProducts) {
-            totalPrice += itemDetails.calculateSubtotal();
+            totalPrice += Double.parseDouble(itemDetails.getSubtotal());
         }
         this.totalPrice = Double.toString(totalPrice);
-        return totalPrice;
+        return this.totalPrice;
     }
 
     public ItemDetails getItemByProductName(String productName) {

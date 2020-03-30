@@ -1,31 +1,44 @@
 package com.planittesting.jupitertoys.tests;
 
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import com.planittesting.jupitertoys.support.TestEnvironment;
+import com.planittesting.jupitertoys.support.ConfigFileReader;
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    public static WebDriver driver; //private and not static
-    private static String URL = "https://jupiter.cloud.planittesting.com"; //should be in a .properties file
-    private static Long TIMEOUT = Long.valueOf(10);
-    protected TestEnvironment testEnvironment = new TestEnvironment();
+    protected WebDriver driver;
 
     @BeforeClass
-    public static void setup() {
+    public void setup() {
         //init driver
-        driver = new ChromeDriver();
+        ConfigFileReader configFileReader = new ConfigFileReader();
+        String browser = configFileReader.getBrowser();
+        switch (browser) {
+            case "chrome" :
+                driver = new ChromeDriver();
+                break;
+            case "firefox" :
+                driver = new FirefoxDriver();
+                break;
+            default:
+                driver = new ChromeDriver();
+                break;
+        }
         driver.manage().window().maximize();
-        driver.navigate().to(URL);
-        driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
+        driver.navigate().to(configFileReader.getUrl());
+        driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
 
     }
 
     @AfterClass
-    public static void teardown() {
+    public void teardown() {
         driver.quit();
     }
 }
+
+//add property file, make it mulitibrowser
+//report

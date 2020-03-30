@@ -1,5 +1,7 @@
 package com.planittesting.jupitertoys.model.pages;
 
+import com.planittesting.jupitertoys.model.data.DeliveryDetails;
+import com.planittesting.jupitertoys.model.data.PaymentDetails;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -54,9 +56,18 @@ public class CheckoutPage extends BaseJupiterToysPage{
         driver.findElement(CARD_NUMBER_INPUT).sendKeys(cardNumber);
     }
 
-    public OrderConfirmPage submitOrder() {
+    public OrderConfirmPage clickSubmitButton() {
         clickButton("Submit");
         return new OrderConfirmPage(driver);
+    }
+
+    public void fillInForm(DeliveryDetails deliveryDetails, PaymentDetails paymentDetails) {
+        enterForename(deliveryDetails.getForename());
+        enterSurname(deliveryDetails.getSurname());
+        enterEmail(deliveryDetails.getEmail());
+        enterAddress(deliveryDetails.getAddress());
+        selectCardType(paymentDetails.getCardType());
+        enterCardNumber(paymentDetails.getCardNumber());
     }
 
 

@@ -1,0 +1,16 @@
+<suite name = "jupiter toys test">
+
+    <test name = "login test">
+        <classes>
+<!--            <class name = "com.planittesting.jupitertoys.tests.LoginTest" />-->
+        </classes>
+    </test>
+
+    <test name = "buy product">
+        <classes>
+<!--            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />-->
+<!--            <class name = "com.planittesting.jupitertoys.tests.CartDetailsTest" />-->
+            <class name = "com.planittesting.jupitertoys.tests.CheckoutTest" />
+        </classes>
+    </test>
+</suite>

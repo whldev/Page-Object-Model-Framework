@@ -3,6 +3,7 @@ package com.planittesting.jupitertoys.model.data;
 public class ItemDetails {
     private String name;
     private String price;
+    private String priceUnit;
     private String quantity;
     private String subtotal;
 
@@ -13,6 +14,11 @@ public class ItemDetails {
 
     public ItemDetails setPrice(String price) {
         this.price = price;
+        return this;
+    }
+
+    public ItemDetails setPriceUnit(String priceUnit) {
+        this.priceUnit = priceUnit;
         return this;
     }
 
@@ -30,14 +36,16 @@ public class ItemDetails {
 
     public String getPrice() { return this.price; }
 
+
+    public String getPriceUnit() { return priceUnit; }
+
+
     public String getQuantity() { return this.quantity; }
 
-    public String getSubtotal() { return this.subtotal; }
-
-    public Double calculateSubtotal() {
+    public String getSubtotal() {
         Double subtotal = Double.parseDouble(this.price) * Integer.parseInt(this.quantity);
-        this.subtotal = Double.toString(subtotal);
-        return subtotal;
+        this.subtotal = subtotal.toString();
+        return this.subtotal;
     }
 
 }

@@ -19,23 +19,20 @@ public class BasePopup extends BasePage {
     }
 
     public void checkPopupTitle(String title) {
-        Assert.assertTrue(popupElement.findElement(By.tagName("h1")).getText().trim().equalsIgnoreCase(title), "title does not match");
+        //Assert.assertTrue(popupElement.findElement(By.tagName("h1")).getText().trim().equalsIgnoreCase(title), "title does not match");
+        Assert.assertEquals(popupElement.findElement(By.tagName("h1")).getText().trim(), title, "title does not match");
     }
 
     public void clickButton(String buttonName) {
         List<WebElement> buttons = popupElement.findElements(By.className("btn"));
-        boolean isFound = false;
         for (WebElement button : buttons) {
             if (button.getText().trim().equalsIgnoreCase(buttonName)) {
                 button.click();
-                isFound = true;
-                break;
+                return;
             }
         }
-        if(!isFound) {
-            throw new IllegalArgumentException("Button " + buttonName + " does not exist");
-        }
+        throw new IllegalArgumentException("Button " + buttonName + " does not exist");
     }
 
-    public By getPopupLocator() {return this.POPUP; }
+    public static By getPopupLocator() {return POPUP; }
 }
