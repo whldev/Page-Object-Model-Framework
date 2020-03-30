@@ -18,8 +18,8 @@ public class BuyProductsTest extends BaseTest {
         LoginPopup loginPopup = homePage.navigateToLoginPage();
         loginPopup.login(configFileReader.getUsername(), configFileReader.getPassword());
 
-        ShopPage shopPage = homePage.navigateToShopPage();
-        shopPage.buyProductByName(cartDetails, "teddy bear");
+        ShopPage shopPage = homePage.navigateToShopPage().waitUntilImagesDisplayed();
+        shopPage.buyProductByNameAndUpdateCartDetail(cartDetails, "teddy bear");
         shopPage.checkCartCount(cartDetails);
     }
 }

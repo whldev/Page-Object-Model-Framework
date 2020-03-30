@@ -12,9 +12,15 @@ public class CartDetails {
         this.boughtProducts = new ArrayList<>();
     }
 
-    public void setBoughtProducts(List<ItemDetails> boughtProducts) { this.boughtProducts = boughtProducts; }
+    public CartDetails setBoughtProducts(List<ItemDetails> boughtProducts) {
+        this.boughtProducts = boughtProducts;
+        return this;
+    }
 
-    public void setTotalPrice(String totalPrice) { this.totalPrice = totalPrice; }
+    public CartDetails setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+        return this;
+    }
 
     public List<ItemDetails> getBoughtProducts() { return this.boughtProducts; }
 

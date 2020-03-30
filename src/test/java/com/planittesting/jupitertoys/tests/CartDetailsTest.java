@@ -1,6 +1,7 @@
 package com.planittesting.jupitertoys.tests;
 
 import com.planittesting.jupitertoys.model.data.CartDetails;
+import com.planittesting.jupitertoys.model.data.ItemDetails;
 import com.planittesting.jupitertoys.support.ConfigFileReader;
 import org.testng.annotations.Test;
 import com.planittesting.jupitertoys.model.pages.CartPage;
@@ -8,9 +9,10 @@ import com.planittesting.jupitertoys.model.pages.HomePage;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
 import com.planittesting.jupitertoys.model.pages.ShopPage;
 
-public class CartDetailsTest extends BaseTest {
+import java.util.ArrayList;
+import java.util.List;
 
-    private CartDetails cartDetails = new CartDetails();
+public class CartDetailsTest extends BaseTest {
 
     @Test
     public void buyProducts() {
@@ -19,14 +21,15 @@ public class CartDetailsTest extends BaseTest {
         LoginPopup loginPopup = homePage.navigateToLoginPage();
         loginPopup.login(configFileReader.getUsername(), configFileReader.getPassword());
 
-        ShopPage shopPage = homePage.navigateToShopPage();
-        shopPage.buyProductByName(cartDetails, "teddy bear");
-        shopPage.buyProductByName(cartDetails, "stuffed frog");
-        shopPage.buyProductByName(cartDetails, "teddy bear");
+        ShopPage shopPage = homePage.navigateToShopPage().waitUntilImagesDisplayed();
+        List<ItemDetails> items = new ArrayList<>();
+        items.add(new ItemDetails().setName("teddy bear").setQuantity("2"));
+        items.add(new ItemDetails().setName("stuffed frog").setQuantity("1"));
+        CartDetails cartDetails = new CartDetails().setBoughtProducts(items);
+        shopPage.buyProduct(cartDetails);
         shopPage.checkCartCount(cartDetails);
 
         CartPage cartPage = shopPage.navigateToCartPage();
         cartPage.checkCart(cartDetails);
-
     }
 }

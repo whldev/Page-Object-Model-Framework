@@ -35,18 +35,30 @@ public class ShopPage extends BaseJupiterToysPage {
         return false;
     }
 
-    public void waitUntilImagesDisplayed() {
+    public ShopPage waitUntilImagesDisplayed() {
         List<WebElement> images = waitUntilDisplayed(PRODUCT_LIST).findElements(IMAGE);
         for (WebElement image : images) {
             wait.until(ExpectedConditions.visibilityOf(image));
         }
+        return this;
     }
 
-    public void buyProductByName(CartDetails cartDetails, String productName) { //options: parse Item)
+    public String buyProductByName(String productName) {
+        productName = productName.trim().toLowerCase();
+        List<WebElement> products = waitUntilDisplayed(PRODUCT_LIST).findElements(PRODUCT);
+        for (WebElement product : products) {
+            if (product.findElement(PRODUCT_TITLE).getText().trim().equalsIgnoreCase(productName)) {
+                product.findElement(BUY_BUTTON).click();
+                return product.findElement(PRODUCT_PRICE).getText().trim();
+            }
+        }
+        throw new IllegalArgumentException("Product name does not exist");
+    }
+
+    public void buyProductByNameAndUpdateCartDetail(CartDetails cartDetails, String productName) { //options: parse Item)
         productName = productName.trim().toLowerCase();
         Pattern pattern = Pattern.compile("(.)(\\d.*)");
         List<WebElement> products = waitUntilDisplayed(PRODUCT_LIST).findElements(PRODUCT);
-        waitUntilImagesDisplayed();
         List<ItemDetails> boughtProducts = cartDetails.getBoughtProducts();
         for (WebElement product : products) {
             if (product.findElement(PRODUCT_TITLE).getText().trim().equalsIgnoreCase(productName)) {
@@ -69,11 +81,18 @@ public class ShopPage extends BaseJupiterToysPage {
         throw new IllegalArgumentException("Product name does not exist");
     }
 
-    //method to buy products according to cartDetail
-//    public void buyProduct(CartDetails cartDetails, ItemDetails item) {
-//        String productName = item.getName();
-//        List<WebElement> products = waitUntilDisplayed(PRODUCT_LIST).findElements(PRODUCT);
-//        List<ItemDetails> boughtProducts = cartDetails.getBoughtProducts();
-//    }
+    public void buyProduct(CartDetails cartDetails) {
+        Pattern pattern = Pattern.compile("(.)(\\d.*)");
+        List<WebElement> products = waitUntilDisplayed(PRODUCT_LIST).findElements(PRODUCT);
+        List<ItemDetails> items = cartDetails.getBoughtProducts();
+        for (ItemDetails item : items) {
+            for (int i = 0; i < Integer.parseInt(item.getQuantity()); i++) {
+                String productPrice = buyProductByName(item.getName());
+                Matcher matcher = pattern.matcher(productPrice);
+                matcher.find();
+                item.setPriceUnit(matcher.group(1)).setPrice(matcher.group(2));
+            }
+        }
+    }
 
 }
