@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import com.planittesting.jupitertoys.support.ConfigFileReader;
+import org.testng.annotations.BeforeTest;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +15,6 @@ public class BaseTest {
 
     @BeforeClass
     public void setup() {
-        //init driver
         ConfigFileReader configFileReader = new ConfigFileReader();
         String browser = configFileReader.getBrowser();
         switch (browser) {

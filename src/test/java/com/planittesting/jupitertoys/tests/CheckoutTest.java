@@ -1,5 +1,6 @@
 package com.planittesting.jupitertoys.tests;
 
+import com.aventstack.extentreports.Status;
 import com.planittesting.jupitertoys.model.data.CartDetails;
 import com.planittesting.jupitertoys.model.data.DeliveryDetails;
 import com.planittesting.jupitertoys.model.data.ItemDetails;
@@ -7,6 +8,8 @@ import com.planittesting.jupitertoys.model.data.PaymentDetails;
 import com.planittesting.jupitertoys.model.pages.*;
 import com.planittesting.jupitertoys.model.popup.ProcessingOrderPopup;
 import com.planittesting.jupitertoys.support.ConfigFileReader;
+import com.planittesting.jupitertoys.support.ExtentTestManager;
+import org.apiguardian.api.API;
 import org.testng.annotations.Test;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
 
@@ -15,7 +18,6 @@ import java.util.List;
 
 public class CheckoutTest extends BaseTest {
 
-    private CartDetails cartDetails = new CartDetails();
     private DeliveryDetails deliveryDetails = new DeliveryDetails();
     private PaymentDetails paymentDetails = new PaymentDetails();
 
@@ -44,6 +46,8 @@ public class CheckoutTest extends BaseTest {
         new ProcessingOrderPopup(driver).waitForProcessing();
 
         new OrderConfirmPage(driver).checkOrderSuccessMessage(deliveryDetails);
+
+        ExtentTestManager.getTest().log(Status.PASS, "Test passed");
     }
 }
 
