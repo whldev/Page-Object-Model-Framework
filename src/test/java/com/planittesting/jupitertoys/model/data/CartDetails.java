@@ -6,7 +6,6 @@ import java.util.List;
 public class CartDetails {
 
     private List<ItemDetails> boughtProducts;
-    private String totalPrice;
 
     public CartDetails() {
         this.boughtProducts = new ArrayList<>();
@@ -17,11 +16,6 @@ public class CartDetails {
         return this;
     }
 
-    public CartDetails setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
-        return this;
-    }
-
     public List<ItemDetails> getBoughtProducts() { return this.boughtProducts; }
 
     public String getTotalPrice() {
@@ -29,8 +23,7 @@ public class CartDetails {
         for (ItemDetails itemDetails : boughtProducts) {
             totalPrice += Double.parseDouble(itemDetails.getSubtotal());
         }
-        this.totalPrice = Double.toString(totalPrice);
-        return this.totalPrice;
+        return Double.toString(totalPrice);
     }
 
     public ItemDetails getItemByProductName(String productName) {

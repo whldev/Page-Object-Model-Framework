@@ -26,6 +26,10 @@ public class ConfigFileReader {
         }
     }
 
+    public static void loadConfigFile() {
+
+    }
+
     public String getBrowser() {
         String browser = properties.getProperty("browser").toLowerCase();
         if (browser != null) {

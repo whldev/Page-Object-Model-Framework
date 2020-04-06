@@ -19,7 +19,6 @@ public class BuyProductsTest extends BaseTest {
         loginPopup.login(configFileReader.getUsername(), configFileReader.getPassword());
 
         ShopPage shopPage = homePage.navigateToShopPage().waitUntilImagesDisplayed();
-        shopPage.buyProductByNameAndUpdateCartDetail(cartDetails, "teddy bear");
         shopPage.checkCartCount(cartDetails);
     }
 }

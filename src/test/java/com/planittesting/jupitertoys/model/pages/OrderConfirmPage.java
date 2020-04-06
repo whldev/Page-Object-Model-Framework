@@ -20,6 +20,7 @@ public class OrderConfirmPage extends BaseJupiterToysPage {
         Assert.assertEquals(thankYouMessage, expectThankYouMessage, "Thank you message is incorrect");
         String orderNumber = orderSuccessfulMessage.findElement(By.cssSelector("strong:last-child")).getText();
         Assert.assertFalse(orderNumber.isEmpty(), "orderNumber is not displayed");
+        //(\\w) to repesent any word
     }
 
 }

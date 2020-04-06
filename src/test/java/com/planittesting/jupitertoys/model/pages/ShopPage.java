@@ -55,42 +55,39 @@ public class ShopPage extends BaseJupiterToysPage {
         throw new IllegalArgumentException("Product name does not exist");
     }
 
-    public void buyProductByNameAndUpdateCartDetail(CartDetails cartDetails, String productName) { //options: parse Item)
-        productName = productName.trim().toLowerCase();
-        Pattern pattern = Pattern.compile("(.)(\\d.*)");
-        List<WebElement> products = waitUntilDisplayed(PRODUCT_LIST).findElements(PRODUCT);
-        List<ItemDetails> boughtProducts = cartDetails.getBoughtProducts();
-        for (WebElement product : products) {
-            if (product.findElement(PRODUCT_TITLE).getText().trim().equalsIgnoreCase(productName)) {
-                Matcher matcher = pattern.matcher(product.findElement(PRODUCT_PRICE).getText().trim());
-                matcher.find();
-                String priceUnit = matcher.group(1);
-                String productPrice = matcher.group(2);
-                product.findElement(BUY_BUTTON).click();
-                if (!isBought(boughtProducts, productName)) {
-                    ItemDetails itemDetails = new ItemDetails();
-                    itemDetails.setName(productName).setPriceUnit(priceUnit).setPrice(productPrice).setQuantity("1");
-                    boughtProducts.add(itemDetails);
-                } else {
-                    ItemDetails itemDetails = cartDetails.getItemByProductName(productName);
-                    itemDetails.setQuantity(String.valueOf(Integer.parseInt(String.valueOf(itemDetails.getQuantity())) + 1));
-                }
-                return;
-            }
-        }
-        throw new IllegalArgumentException("Product name does not exist");
-    }
+//    public void buyProductByNameAndUpdateCartDetail(CartDetails cartDetails, String productName) { //options: parse Item)
+//        productName = productName.trim().toLowerCase();
+//        Pattern pattern = Pattern.compile("(.)(\\d.*)");
+//        List<WebElement> products = waitUntilDisplayed(PRODUCT_LIST).findElements(PRODUCT);
+//        List<ItemDetails> boughtProducts = cartDetails.getBoughtProducts();
+//        for (WebElement product : products) {
+//            if (product.findElement(PRODUCT_TITLE).getText().trim().equalsIgnoreCase(productName)) {
+//                Matcher matcher = pattern.matcher(product.findElement(PRODUCT_PRICE).getText().trim());
+//                matcher.find();
+//                String priceUnit = matcher.group(1);
+//                String productPrice = matcher.group(2);
+//                product.findElement(BUY_BUTTON).click();
+//                if (!isBought(boughtProducts, productName)) {
+//                    ItemDetails itemDetails = new ItemDetails();
+//                    itemDetails.setName(productName).setPriceUnit(priceUnit).setPrice(productPrice).setQuantity("1");
+//                    boughtProducts.add(itemDetails);
+//                } else {
+//                    ItemDetails itemDetails = cartDetails.getItemByProductName(productName);
+//                    itemDetails.setQuantity(String.valueOf(Integer.parseInt(String.valueOf(itemDetails.getQuantity())) + 1));
+//                }
+//                return;
+//            }
+//        }
+//        throw new IllegalArgumentException("Product name does not exist");
+//    }
 
     public void buyProduct(CartDetails cartDetails) {
-        Pattern pattern = Pattern.compile("(.)(\\d.*)");
+        //Pattern pattern = Pattern.compile("(.)(\\d.*)");
         List<WebElement> products = waitUntilDisplayed(PRODUCT_LIST).findElements(PRODUCT);
         List<ItemDetails> items = cartDetails.getBoughtProducts();
         for (ItemDetails item : items) {
             for (int i = 0; i < Integer.parseInt(item.getQuantity()); i++) {
-                String productPrice = buyProductByName(item.getName());
-                Matcher matcher = pattern.matcher(productPrice);
-                matcher.find();
-                item.setPriceUnit(matcher.group(1)).setPrice(matcher.group(2));
+                buyProductByName(item.getName());
             }
         }
     }

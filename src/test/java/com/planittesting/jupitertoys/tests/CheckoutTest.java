@@ -1,6 +1,5 @@
 package com.planittesting.jupitertoys.tests;
 
-import com.aventstack.extentreports.Status;
 import com.planittesting.jupitertoys.model.data.CartDetails;
 import com.planittesting.jupitertoys.model.data.DeliveryDetails;
 import com.planittesting.jupitertoys.model.data.ItemDetails;
@@ -8,8 +7,7 @@ import com.planittesting.jupitertoys.model.data.PaymentDetails;
 import com.planittesting.jupitertoys.model.pages.*;
 import com.planittesting.jupitertoys.model.popup.ProcessingOrderPopup;
 import com.planittesting.jupitertoys.support.ConfigFileReader;
-import com.planittesting.jupitertoys.support.ExtentTestManager;
-import org.apiguardian.api.API;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
 
@@ -30,14 +28,18 @@ public class CheckoutTest extends BaseTest {
         ShopPage shopPage = homePage.navigateToShopPage().waitUntilImagesDisplayed();
 
         List<ItemDetails> items = new ArrayList<>();
-        items.add(new ItemDetails().setName("teddy bear").setQuantity("2"));
-        items.add(new ItemDetails().setName("stuffed frog").setQuantity("1"));
+        items.add(new ItemDetails().setName("teddy bear").setQuantity("2").setPrice("$12.99"));
+        items.add(new ItemDetails().setName("stuffed frog").setQuantity("1").setPrice("$10.99"));
         CartDetails cartDetails = new CartDetails().setBoughtProducts(items);
         shopPage.buyProduct(cartDetails);
-        shopPage.buyProductByNameAndUpdateCartDetail(cartDetails, "teddy bear");
         shopPage.checkCartCount(cartDetails);
         CartPage cartPage = shopPage.navigateToCartPage();
         cartPage.checkCart(cartDetails);
+
+        cartDetails.getItemByProductName("teddy bear").setQuantity("3");
+        cartPage.updateQuantity(cartDetails);
+        cartPage.checkCart(cartDetails);
+
         CheckoutPage checkoutPage = cartPage.checkout();
 
         checkoutPage.fillInForm(deliveryDetails, paymentDetails);
@@ -46,8 +48,7 @@ public class CheckoutTest extends BaseTest {
         new ProcessingOrderPopup(driver).waitForProcessing();
 
         new OrderConfirmPage(driver).checkOrderSuccessMessage(deliveryDetails);
-
-        ExtentTestManager.getTest().log(Status.PASS, "Test passed");
+        Assert.assertTrue(false, "Test failed");
     }
 }
 
