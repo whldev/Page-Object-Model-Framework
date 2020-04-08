@@ -1,8 +1,8 @@
 package com.planittesting.jupitertoys.tests;
 
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -44,7 +44,7 @@ public class BaseTest {
 //                DesiredCapabilities capability = DesiredCapabilities.chrome();
 //                capability.setBrowserName("chrome");
 //                capability.setPlatform(Platform.WINDOWS);
-//                driver = new RemoteWebDriver(new URL("https://192.168.1.107:4444/wd/hub"), capability);
+                //driver = new RemoteWebDriver new URL("https://192.168.1.107:4444/wd/hub"), new ChromeOptions());
                 driver = new ChromeDriver();
                 break;
             case "firefox" :

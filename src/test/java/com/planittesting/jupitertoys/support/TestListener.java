@@ -1,16 +1,12 @@
 package com.planittesting.jupitertoys.support;
 
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.markuputils.Markup;
 import com.planittesting.jupitertoys.tests.BaseTest;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-import com.aventstack.extentreports.Status;
 
 import java.io.IOException;
 
@@ -34,7 +30,7 @@ public class TestListener extends BaseTest implements ITestListener {
 
     public void onTestSuccess(ITestResult result) {
         System.out.println("*** Executed " + result.getMethod().getMethodName() + " test successfully...");
-        ExtentManager.getTest().log(Status.PASS, "Test passed");
+        ExtentManager.getTest().log(LogStatus.PASS, "Test passed");
     }
 
     public void onTestFailure(ITestResult result) {
@@ -42,10 +38,10 @@ public class TestListener extends BaseTest implements ITestListener {
         System.out.println("*** Test execution " + testName + " failed...");
         WebDriver driver = ((BaseTest) result.getInstance()).getDriver();
         try {
-            String screenshot = ExtentManager.getScreenshot(driver, testName);
+            String screenshotLocation = ExtentManager.getScreenshot(driver, testName);
             ExtentTest test = ExtentManager.getTest();
-            test.log(Status.FAIL, "Test failed");
-            //test.fail(test.addScreenCaptureFromPath(screenshot));
+            test.log(LogStatus.FAIL, "Test failed");
+            test.log(LogStatus.INFO, test.addScreenCapture(screenshotLocation));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +49,7 @@ public class TestListener extends BaseTest implements ITestListener {
 
     public void onTestSkipped(ITestResult result) {
         System.out.println("*** Test " + result.getMethod().getMethodName() + " skipped...");
-        ExtentManager.getTest().log(Status.SKIP, "Test Skipped");
+        ExtentManager.getTest().log(LogStatus.SKIP, "Test Skipped");
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {

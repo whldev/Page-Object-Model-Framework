@@ -8,13 +8,38 @@ public class ContactDetails {
     private String telephone;
     private String message;
 
-    public void setForename(String forename) { this.forename = forename; }
+    public ContactDetails setForename(String forename) {
+        this.forename = forename;
+        return this;
+    }
 
-    public void setSurname(String surname) { this.surname = surname; }
+    public ContactDetails setSurname(String surname) {
+        this.surname = surname;
+        return this;
+    }
 
-    public void setEmail(String email) {this.email = email; }
+    public ContactDetails setEmail(String email) {
+        this.email = email;
+        return this;
+    }
 
-    public void setTelephone(String telephone) {this.telephone = telephone; }
+    public ContactDetails setTelephone(String telephone) {
+        this.telephone = telephone;
+        return this;
+    }
 
-    public void setMessage(String message) {this.message = message; }
+    public ContactDetails setMessage(String message) {
+        this.message = message;
+        return this;
+    }
+
+    public String getForename() { return forename; }
+
+    public String getSurname() { return surname; }
+
+    public String getEmail() { return email; }
+
+    public String getTelephone() { return telephone; }
+
+    public String getMessage() { return message; }
 }

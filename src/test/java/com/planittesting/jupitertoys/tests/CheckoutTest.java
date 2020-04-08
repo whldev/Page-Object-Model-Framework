@@ -5,8 +5,9 @@ import com.planittesting.jupitertoys.model.data.DeliveryDetails;
 import com.planittesting.jupitertoys.model.data.ItemDetails;
 import com.planittesting.jupitertoys.model.data.PaymentDetails;
 import com.planittesting.jupitertoys.model.pages.*;
-import com.planittesting.jupitertoys.model.popup.ProcessingOrderPopup;
+import com.planittesting.jupitertoys.model.popup.ProcessingPopup;
 import com.planittesting.jupitertoys.support.ConfigFileReader;
+import com.planittesting.jupitertoys.support.ContactDataProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
@@ -45,9 +46,9 @@ public class CheckoutTest extends BaseTest {
         checkoutPage.fillInForm(deliveryDetails, paymentDetails);
         checkoutPage.clickSubmitButton();
 
-        new ProcessingOrderPopup(driver).waitForProcessing();
+        new ProcessingPopup(driver).waitForProcessing();
 
-        new OrderConfirmPage(driver).checkOrderSuccessMessage(deliveryDetails);
+        new ConfirmationPage(driver).checkOrderSubmittedMessage(deliveryDetails);
         Assert.assertTrue(false, "Test failed");
     }
 }

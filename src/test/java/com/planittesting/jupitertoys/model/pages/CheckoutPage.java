@@ -56,9 +56,9 @@ public class CheckoutPage extends BaseJupiterToysPage{
         driver.findElement(CARD_NUMBER_INPUT).sendKeys(cardNumber);
     }
 
-    public OrderConfirmPage clickSubmitButton() {
+    public ConfirmationPage clickSubmitButton() {
         clickButton("Submit");
-        return new OrderConfirmPage(driver);
+        return new ConfirmationPage(driver);
     }
 
     public void fillInForm(DeliveryDetails deliveryDetails, PaymentDetails paymentDetails) {

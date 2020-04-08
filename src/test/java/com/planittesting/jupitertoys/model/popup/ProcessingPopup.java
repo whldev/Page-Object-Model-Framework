@@ -3,9 +3,9 @@ package com.planittesting.jupitertoys.model.popup;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ProcessingOrderPopup extends BasePopup {
+public class ProcessingPopup extends BasePopup {
 
-    public ProcessingOrderPopup(WebDriver driver) { super(driver); }
+    public ProcessingPopup(WebDriver driver) { super(driver); }
 
     public void waitForProcessing() {
         if (popupElement.isDisplayed()) {

@@ -2,6 +2,7 @@ package com.planittesting.jupitertoys.model.pages;
 
 import com.planittesting.jupitertoys.model.data.CartDetails;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
+import com.planittesting.jupitertoys.model.popup.LogoutPopup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ public class BaseJupiterToysPage extends BasePage {
     private static final By SHOP_BUTTON = By.id("nav-shop");
     private static final By CONTACT_BUTTON = By.id("nav-contact");
     private static final By LOGIN_BUTTON = By.id("nav-login");
+    private static final By LOGOUT_BUTTON = By.id("nav-logout");
     private static final By CART_BUTTON = By.id("nav-cart");
     private static final By CART_COUNT = By.className("cart-count");
     private static final By USER_BUTTON = By.id("nav-user");
@@ -35,7 +37,7 @@ public class BaseJupiterToysPage extends BasePage {
 
     public ContactPage navigateToContactPage() {
         click(CONTACT_BUTTON);
-        return new ContactPage();
+        return new ContactPage(driver);
     }
 
     public LoginPopup navigateToLoginPage() {
@@ -65,6 +67,11 @@ public class BaseJupiterToysPage extends BasePage {
             }
         }
         throw new IllegalArgumentException("Button " + buttonName + " does not exist");
+    }
+
+    public LogoutPopup clickLogout() {
+        click(LOGOUT_BUTTON);
+        return new LogoutPopup(driver);
     }
 
 }

@@ -5,10 +5,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,7 +18,7 @@ public class ExtentManager {
     private static String reportFileName = "Test-Automaton-Report"+".html";
     private static String reportFilePath = System.getProperty("user.dir") + "\\TestReport";
     private static String reportFileLocation =  reportFilePath + "\\" + reportFileName;
-    private static String screenshotPath = System.getProperty("user.dir") + "\\TestScreenShots";
+    private static String screenshotPath = System.getProperty("user.dir") + "\\TestScreenshots";
 
 
     public static ExtentReports getInstance() {
@@ -42,18 +40,22 @@ public class ExtentManager {
             e.printStackTrace();
         }
 
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
-        htmlReporter.config().setTheme(Theme.STANDARD);
-        htmlReporter.config().setDocumentTitle(reportFileName);
-        htmlReporter.config().setEncoding("utf-8");
-        htmlReporter.config().setReportName(reportFileName);
-        htmlReporter.config().setTimeStampFormat("MMMM dd, yyyy, hh:mm");
+//        ExtentReporter htmlReporter = new ExtentHtmlReporter(fileName);
+//        htmlReporter.config().setTheme(Theme.STANDARD);
+//        htmlReporter.config().setDocumentTitle(reportFileName);
+//        htmlReporter.config().setEncoding("utf-8");
+//        htmlReporter.config().setReportName(reportFileName);
+//        htmlReporter.config().setTimeStampFormat("MMMM dd, yyyy, hh:mm");
+//
+//        extent = new ExtentReports();
+//        extent.attachReporter(htmlReporter);
+//        //Set environment details
+//        extent.setSystemInfo("OS", "Windows");
+//        extent.setSystemInfo("AUT", "QA");
 
-        extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
-        //Set environment details
-        extent.setSystemInfo("OS", "Windows");
-        extent.setSystemInfo("AUT", "QA");
+        extent = new ExtentReports(fileName, true);
+        extent.addSystemInfo("OS", "Windows");
+        extent.addSystemInfo("AUT", "QA");
     }
 
     //Create the report path
@@ -68,13 +70,13 @@ public class ExtentManager {
             }
         } else {
             System.out.println("Directory already exists: " + path);
-            new File(reportFileLocation).deleteOnExit();
+            //new File(reportFileLocation).deleteOnExit();
         }
         return reportFileLocation;
     }
 
     public static void startTest(String testName) {
-        test = extent.createTest(testName);
+        test = extent.startTest(testName);
     }
 
     public static String getScreenshot(WebDriver driver, String testName) throws IOException {
