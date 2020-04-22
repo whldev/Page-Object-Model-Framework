@@ -100,4 +100,13 @@ public class ExtentManager {
         File screenshot = new File(screenshotLocation);
         FileUtils.copyFile(source, screenshot);
     }
+
+    public static void logStep(String stepDescription) {
+        getTest().log(LogStatus.INFO, stepDescription);
+    }
+
+    public static void logException(Throwable errorMessage) {
+        getTest().log(LogStatus.FAIL, errorMessage);
+        errorMessage.printStackTrace();
+    }
 }

@@ -39,7 +39,7 @@ public class TestListener extends BaseTest implements ITestListener {
         WebDriver driver = ((BaseTest) result.getInstance()).getDriver();
         try {
             ExtentManager.takeScreenshot(driver, testName);
-            ExtentManager.getTest().log(LogStatus.FAIL, "Test failed");
+            ExtentManager.logException(result.getThrowable());
         } catch (IOException e) {
             e.printStackTrace();
         }

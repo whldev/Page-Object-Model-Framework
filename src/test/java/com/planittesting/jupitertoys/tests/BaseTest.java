@@ -13,6 +13,7 @@ public class BaseTest {
     @BeforeSuite(alwaysRun = true)
     public void globalSetup() {
         Settings.readSettings();
+
     }
     @BeforeMethod(alwaysRun = true)
     public void setup() {
