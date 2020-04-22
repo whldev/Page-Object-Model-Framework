@@ -6,6 +6,8 @@ import com.planittesting.jupitertoys.model.pages.ContactPage;
 import com.planittesting.jupitertoys.model.pages.HomePage;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
 import com.planittesting.jupitertoys.model.popup.ProcessingPopup;
+import com.planittesting.jupitertoys.support.CsvDataProvider;
+import com.planittesting.jupitertoys.support.Settings;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,33 +24,18 @@ public class ContactTest extends BaseTest {
 
     @DataProvider(name = "contactData")
     public static Object[][] feedData() throws IOException {
-        List<Object[]> records = new ArrayList<Object[]>();
-        String record;
-        BufferedReader file = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"UTF-8"));
-        //read the first line
-        file.readLine();
-        while((record = file.readLine()) != null){
-            String fields[] = record.split(",");
-            records.add(fields);
-        }
-        file.close();
-
-        Object[][] results = new Object[records.size()][];
-        for(int i = 0; i < records.size(); i++){
-            results[i]=records.get(i);
-        }
-        return results;
+        return CsvDataProvider.readCsv(filePath);
     }
 
-    @Test(dataProvider="contactData")
-    public void addContact(String forename, String surname, String email, String telephone, String message) {
+    @Test(dataProvider="contactData", groups = "contact")
+    public void addContact(ContactDetails contactDetails) {
+        //can parse csv file to a class object (ContactDetails) try apache jackson
+        //create a csv parser using jackson
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();
-        loginPopup.login(username, password);
+        loginPopup.login(Settings.getUsername(), Settings.getPassword());
         ContactPage contactPage = homePage.navigateToContactPage();
-
-        ContactDetails contactDetails = new ContactDetails();
-        contactDetails.setForename(forename).setSurname(surname).setEmail(email).setTelephone(telephone).setMessage(message);
+        
         contactPage.fillInForm(contactDetails);
         contactPage.clickSubmitButton();
 

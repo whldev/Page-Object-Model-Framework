@@ -6,8 +6,7 @@ import com.planittesting.jupitertoys.model.data.ItemDetails;
 import com.planittesting.jupitertoys.model.data.PaymentDetails;
 import com.planittesting.jupitertoys.model.pages.*;
 import com.planittesting.jupitertoys.model.popup.ProcessingPopup;
-import com.planittesting.jupitertoys.support.ConfigFileReader;
-import com.planittesting.jupitertoys.support.ContactDataProvider;
+import com.planittesting.jupitertoys.support.Settings;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
@@ -20,12 +19,11 @@ public class CheckoutTest extends BaseTest {
     private DeliveryDetails deliveryDetails = new DeliveryDetails();
     private PaymentDetails paymentDetails = new PaymentDetails();
 
-    @Test
+    @Test(groups = "checkout")
     public void buyProducts() {
-        ConfigFileReader configFileReader = new ConfigFileReader();
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();
-        loginPopup.login(configFileReader.getUsername(), configFileReader.getPassword());
+        loginPopup.login(Settings.getUsername(), Settings.getPassword());
         ShopPage shopPage = homePage.navigateToShopPage().waitUntilImagesDisplayed();
 
         List<ItemDetails> items = new ArrayList<>();
@@ -49,7 +47,7 @@ public class CheckoutTest extends BaseTest {
         new ProcessingPopup(driver).waitForProcessing();
 
         new ConfirmationPage(driver).checkOrderSubmittedMessage(deliveryDetails);
-        Assert.assertTrue(false, "Test failed");
+        Assert.assertTrue(true, "Test passed");
     }
 }
 

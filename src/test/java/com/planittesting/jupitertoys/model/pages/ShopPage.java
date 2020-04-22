@@ -83,7 +83,6 @@ public class ShopPage extends BaseJupiterToysPage {
 
     public void buyProduct(CartDetails cartDetails) {
         //Pattern pattern = Pattern.compile("(.)(\\d.*)");
-        List<WebElement> products = waitUntilDisplayed(PRODUCT_LIST).findElements(PRODUCT);
         List<ItemDetails> items = cartDetails.getBoughtProducts();
         for (ItemDetails item : items) {
             for (int i = 0; i < Integer.parseInt(item.getQuantity()); i++) {

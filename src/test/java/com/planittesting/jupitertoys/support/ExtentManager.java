@@ -7,39 +7,40 @@ import java.util.Date;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 public class ExtentManager {
-    private static ExtentReports extent;
-    private static ExtentTest test;
+    private static ExtentReports extentReports;
+    private static ThreadLocal<ExtentTest> tests = new ThreadLocal<ExtentTest>();
     private static String reportFileName = "Test-Automaton-Report"+".html";
     private static String reportFilePath = System.getProperty("user.dir") + "\\TestReport";
     private static String reportFileLocation =  reportFilePath + "\\" + reportFileName;
     private static String screenshotPath = System.getProperty("user.dir") + "\\TestScreenshots";
 
 
-    public static ExtentReports getInstance() {
-        if (extent == null)
-            createInstance();
-        return extent;
+    public static ExtentReports getExtentReports() {
+        if (extentReports == null)
+            initializeReporting();
+        return extentReports;
     }
 
     public static ExtentTest getTest() {
-        return test;
+        return tests.get();
     }
 
     //Create an extent report instance
-    public static void createInstance() {
+    public static void initializeReporting() {
         String fileName = null;
         try {
             fileName = getReportPath(reportFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+//        //for extent report 4
 //        ExtentReporter htmlReporter = new ExtentHtmlReporter(fileName);
 //        htmlReporter.config().setTheme(Theme.STANDARD);
 //        htmlReporter.config().setDocumentTitle(reportFileName);
@@ -53,9 +54,9 @@ public class ExtentManager {
 //        extent.setSystemInfo("OS", "Windows");
 //        extent.setSystemInfo("AUT", "QA");
 
-        extent = new ExtentReports(fileName, true);
-        extent.addSystemInfo("OS", "Windows");
-        extent.addSystemInfo("AUT", "QA");
+        extentReports = new ExtentReports(fileName, true);
+        extentReports.addSystemInfo("OS", "Windows");
+        extentReports.addSystemInfo("AUT", "QA");
     }
 
     //Create the report path
@@ -76,13 +77,17 @@ public class ExtentManager {
     }
 
     public static void startTest(String testName) {
-        test = extent.startTest(testName);
+        tests.set(extentReports.startTest(testName));
     }
 
-    public static String getScreenshot(WebDriver driver, String testName) throws IOException {
+    public static void takeScreenshot(WebDriver driver, String testName) throws IOException {
+        //take screenshot
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
+        String base64screenshot = ts.getScreenshotAs(OutputType.BASE64);
+        getTest().log(LogStatus.INFO, "<img src='data:image/png;base64," + base64screenshot + "' />");
+        //store screenshot
         File screenshotDirectory = new File(screenshotPath);
         if (!screenshotDirectory.exists()) {
             if (screenshotDirectory.mkdir()) {
@@ -94,7 +99,5 @@ public class ExtentManager {
         String screenshotLocation = screenshotPath + "\\ScreenshotFromFailedTest_" + testName + "_at_" + date + ".png";
         File screenshot = new File(screenshotLocation);
         FileUtils.copyFile(source, screenshot);
-
-        return screenshotLocation;
     }
 }

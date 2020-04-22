@@ -4,6 +4,7 @@ public class ItemDetails {
     private String name;
     private String price;
     private String quantity;
+    private String currency;
 
     public ItemDetails setName(String name) {
         this.name = name;
@@ -12,6 +13,11 @@ public class ItemDetails {
 
     public ItemDetails setPrice(String price) {
         this.price = price;
+        return this;
+    }
+
+    public ItemDetails setCurrency(String currency) {
+        this.currency = currency;
         return this;
     }
 
@@ -25,6 +31,8 @@ public class ItemDetails {
     public String getPrice() { return this.price; }
 
     public String getQuantity() { return this.quantity; }
+
+    public String getCurrency() { return currency; }
 
     public String getSubtotal() {
         String price = this.price.replaceAll("[^\\d.]", "");

@@ -1,7 +1,7 @@
 package com.planittesting.jupitertoys.tests;
 
 import com.planittesting.jupitertoys.model.data.CartDetails;
-import com.planittesting.jupitertoys.support.ConfigFileReader;
+import com.planittesting.jupitertoys.support.Settings;
 import org.testng.annotations.Test;
 import com.planittesting.jupitertoys.model.pages.HomePage;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
@@ -13,10 +13,9 @@ public class BuyProductsTest extends BaseTest {
 
     @Test
     public void buyProducts() {
-        ConfigFileReader configFileReader = new ConfigFileReader();
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();
-        loginPopup.login(configFileReader.getUsername(), configFileReader.getPassword());
+        loginPopup.login(Settings.getUsername(), Settings.getPassword());
 
         ShopPage shopPage = homePage.navigateToShopPage().waitUntilImagesDisplayed();
         shopPage.checkCartCount(cartDetails);

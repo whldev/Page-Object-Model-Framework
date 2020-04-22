@@ -19,12 +19,12 @@ public class TestListener extends BaseTest implements ITestListener {
 
     public void onFinish(ITestContext context) {
         System.out.println(("*** Test Suite " + context.getName() + " ending ***"));
-        ExtentManager.getInstance().flush();
+        ExtentManager.getExtentReports().flush();
     }
 
     public void onTestStart(ITestResult result) {
         System.out.println(("*** Running test method " + result.getMethod().getMethodName() + "..."));
-        ExtentManager.createInstance();
+        ExtentManager.initializeReporting();
         ExtentManager.startTest(result.getMethod().getMethodName());
     }
 
@@ -38,10 +38,8 @@ public class TestListener extends BaseTest implements ITestListener {
         System.out.println("*** Test execution " + testName + " failed...");
         WebDriver driver = ((BaseTest) result.getInstance()).getDriver();
         try {
-            String screenshotLocation = ExtentManager.getScreenshot(driver, testName);
-            ExtentTest test = ExtentManager.getTest();
-            test.log(LogStatus.FAIL, "Test failed");
-            test.log(LogStatus.INFO, test.addScreenCapture(screenshotLocation));
+            ExtentManager.takeScreenshot(driver, testName);
+            ExtentManager.getTest().log(LogStatus.FAIL, "Test failed");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,3 +1,6 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
 <suite name = "jupiter toys test">
 
     <listeners>
@@ -5,9 +8,15 @@
     </listeners>
 
     <test name = "buy product">
+        <groups>
+            <run>
+                <include name = "checkout" />
+            </run>
+        </groups>
+
         <classes>
-            <!--            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />-->
-            <!--            <class name = "com.planittesting.jupitertoys.tests.CartDetailsTest" />-->
+            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />
+            <class name = "com.planittesting.jupitertoys.tests.CartDetailsTest" />
             <class name = "com.planittesting.jupitertoys.tests.CheckoutTest" />
         </classes>
     </test>
