@@ -2,6 +2,7 @@ package com.planittesting.jupitertoys.support;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Set;
@@ -15,8 +16,13 @@ public class Browser {
     public static WebDriver launchBrowser() {
         switch (Settings.getBrowser()) {
             case "chrome" :
+                ChromeOptions options = new ChromeOptions();
 //                driver = new RemoteWebDriver(new URL("http://192.168.1.107:4444/wd/hub"), new ChromeOptions());
-                driver = new ChromeDriver();
+                if (Settings.isHeadless()) {
+                    options.addArguments("headless");
+                    options.addArguments("window-size=1200x600");
+                }
+                driver = new ChromeDriver(options);
                 break;
             case "firefox" :
                 driver = new FirefoxDriver();

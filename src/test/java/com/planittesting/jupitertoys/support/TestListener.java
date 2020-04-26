@@ -10,7 +10,7 @@ import org.testng.ITestResult;
 
 import java.io.IOException;
 
-public class TestListener extends BaseTest implements ITestListener {
+public class TestListener implements ITestListener {
 
 
     public void onStart(ITestContext context) {
@@ -19,13 +19,10 @@ public class TestListener extends BaseTest implements ITestListener {
 
     public void onFinish(ITestContext context) {
         System.out.println(("*** Test Suite " + context.getName() + " ending ***"));
-        ExtentManager.getExtentReports().flush();
     }
 
     public void onTestStart(ITestResult result) {
         System.out.println(("*** Running test method " + result.getMethod().getMethodName() + "..."));
-        ExtentManager.initializeReporting();
-        ExtentManager.startTest(result.getMethod().getMethodName());
     }
 
     public void onTestSuccess(ITestResult result) {
@@ -36,13 +33,7 @@ public class TestListener extends BaseTest implements ITestListener {
     public void onTestFailure(ITestResult result) {
         String testName = result.getMethod().getMethodName();
         System.out.println("*** Test execution " + testName + " failed...");
-        WebDriver driver = ((BaseTest) result.getInstance()).getDriver();
-        try {
-            ExtentManager.takeScreenshot(driver, testName);
-            ExtentManager.logException(result.getThrowable());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ExtentManager.getTest().log(LogStatus.FAIL, "Test failed");
     }
 
     public void onTestSkipped(ITestResult result) {

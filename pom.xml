@@ -56,7 +56,15 @@
             <version>2.10.3</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
 
+
+<!--Try use system variables instead of .properties file-->
 
     </dependencies>
 
@@ -69,8 +77,8 @@
                     <version>3.8.1</version>
                     <configuration>
 <!--                        <release>13</release>-->
-                        <source>13</source>
-                        <target>13</target>
+                        <source>8</source>
+                        <target>8</target>
                     </configuration>
                 </plugin>
 
@@ -79,9 +87,10 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M4</version>
                     <configuration>
-                        <suiteXmlFiles>
-                            <suiteXmlFile>runner.xml</suiteXmlFile>
-                        </suiteXmlFiles>
+<!--                        <groups>checkout</groups>-->
+<!--                        <suiteXmlFiles>-->
+<!--                            <suiteXmlFile>runner.xml</suiteXmlFile>-->
+<!--                        </suiteXmlFiles>-->
                     </configuration>
                 </plugin>
             </plugins>

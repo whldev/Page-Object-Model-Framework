@@ -16,7 +16,8 @@ public class BasePage {
     }
 
     public void click(By elemLocator) {
-        waitUntilDisplayed(elemLocator).click();
+        //waitUntilDisplayed(elemLocator).click();
+        driver.findElement(elemLocator).click();
     }
 
 

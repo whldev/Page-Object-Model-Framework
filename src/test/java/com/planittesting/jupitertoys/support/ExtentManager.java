@@ -86,7 +86,7 @@ public class ExtentManager {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
         String base64screenshot = ts.getScreenshotAs(OutputType.BASE64);
-        getTest().log(LogStatus.INFO, "<img src='data:image/png;base64," + base64screenshot + "' />");
+        getTest().log(LogStatus.INFO, "<img src='data:image/png;base64," + base64screenshot + "' style='width:70%;height:70%;'" + " />");  //edit image size here
         //store screenshot
         File screenshotDirectory = new File(screenshotPath);
         if (!screenshotDirectory.exists()) {

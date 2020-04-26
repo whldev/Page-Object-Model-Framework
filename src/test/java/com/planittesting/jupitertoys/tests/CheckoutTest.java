@@ -53,7 +53,7 @@ public class CheckoutTest extends BaseTest {
 
         ExtentManager.logStep("Verify order submitted message");
         new ConfirmationPage(driver).checkOrderSubmittedMessage(deliveryDetails);
-        Assert.assertTrue(true, "Test passed");
+        Assert.assertTrue(false, "Test failed");
     }
 }
 
