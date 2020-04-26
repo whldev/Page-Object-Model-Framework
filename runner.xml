@@ -15,8 +15,8 @@
         </groups>
 
         <classes>
-            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />
-            <class name = "com.planittesting.jupitertoys.tests.CartDetailsTest" />
+<!--            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />-->
+<!--            <class name = "com.planittesting.jupitertoys.tests.CartDetailsTest" />-->
             <class name = "com.planittesting.jupitertoys.tests.CheckoutTest" />
         </classes>
     </test>
