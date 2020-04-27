@@ -21,16 +21,16 @@
         </classes>
     </test>
 
-    <test name = "feedback">
-        <groups>
-            <run>
-                <include name = "feedback" />
-            </run>
-        </groups>
+<!--    <test name = "feedback">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name = "feedback" />-->
+<!--            </run>-->
+<!--        </groups>-->
 
-        <classes>
-            <class name = "com.planittesting.jupitertoys.tests.ContactTest" />
-        </classes>
-    </test>
+<!--        <classes>-->
+<!--            <class name = "com.planittesting.jupitertoys.tests.ContactTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>
