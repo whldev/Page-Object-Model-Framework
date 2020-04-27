@@ -23,10 +23,10 @@ public class BaseTest {
 
     }
     @BeforeMethod(alwaysRun = true)
-    public void setup(ITestContext context) {
+    public void setup(ITestResult result) {
         driver = Browser.launchBrowser();
-        ExtentManager.startTest(context.getName());
-        context.setAttribute("driver", driver);
+        ExtentManager.startTest(result.getMethod().getMethodName());
+        result.setAttribute("driver", driver);
         //test this one in test listener
     }
 
