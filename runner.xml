@@ -11,6 +11,7 @@
         <groups>
             <run>
                 <include name = "checkout" />
+                <include name = "feedback" />
             </run>
         </groups>
 
@@ -18,6 +19,7 @@
 <!--            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />-->
 <!--            <class name = "com.planittesting.jupitertoys.tests.CartDetailsTest" />-->
             <class name = "com.planittesting.jupitertoys.tests.CheckoutTest" />
+            <class name = "com.planittesting.jupitertoys.tests.ContactTest" />
         </classes>
     </test>
 </suite>

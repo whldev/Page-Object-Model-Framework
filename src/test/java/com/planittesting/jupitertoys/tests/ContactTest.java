@@ -8,6 +8,9 @@ import com.planittesting.jupitertoys.model.popup.LoginPopup;
 import com.planittesting.jupitertoys.model.popup.ProcessingPopup;
 import com.planittesting.jupitertoys.support.CsvDataProvider;
 import com.planittesting.jupitertoys.support.Settings;
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -27,8 +30,8 @@ public class ContactTest extends BaseTest {
         return CsvDataProvider.readCsv(filePath);
     }
 
-    @Test(dataProvider="contactData", groups = "contact")
-    public void addContact(ContactDetails contactDetails) {
+    @Test(dataProvider="contactData", groups = "feedback")
+    public void sendFeedback(ContactDetails contactDetails) {
         //can parse csv file to a class object (ContactDetails) try apache jackson
         //create a csv parser using jackson
         HomePage homePage = new HomePage(driver);
@@ -44,6 +47,10 @@ public class ContactTest extends BaseTest {
         ConfirmationPage confirmationPage = new ConfirmationPage(driver);
         confirmationPage.checkFeedbackSubmittedMessage(contactDetails);
         confirmationPage.clickLogout().clickLogout();
+
+        Assert.assertTrue(true, "Test passed");
+        ITestResult result = Reporter.getCurrentTestResult();
+        result.setAttribute("requirement", "JT-51");
 
     }
 }

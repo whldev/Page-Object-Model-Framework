@@ -9,6 +9,8 @@ import com.planittesting.jupitertoys.model.popup.ProcessingPopup;
 import com.planittesting.jupitertoys.support.ExtentManager;
 import com.planittesting.jupitertoys.support.Settings;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.Test;
 import com.planittesting.jupitertoys.model.popup.LoginPopup;
 
@@ -21,7 +23,7 @@ public class CheckoutTest extends BaseTest {
     private PaymentDetails paymentDetails = new PaymentDetails();
 
     @Test(groups = "checkout")
-    public void buyProducts() {
+    public void checkout() {
         ExtentManager.logStep("Login to Jupitor Toys");
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();
@@ -54,6 +56,8 @@ public class CheckoutTest extends BaseTest {
         ExtentManager.logStep("Verify order submitted message");
         new ConfirmationPage(driver).checkOrderSubmittedMessage(deliveryDetails);
         Assert.assertTrue(true, "Test passed");
+        ITestResult result = Reporter.getCurrentTestResult();
+        result.setAttribute("requirement", "JT-1");
     }
 }
 
