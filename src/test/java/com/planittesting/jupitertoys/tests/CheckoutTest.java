@@ -23,7 +23,7 @@ public class CheckoutTest extends BaseTest {
     private PaymentDetails paymentDetails = new PaymentDetails();
 
     @Test(groups = "checkout")
-    public void checkout() {
+    public void checkoutTest() {
         ExtentManager.logStep("Login to Jupitor Toys");
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();

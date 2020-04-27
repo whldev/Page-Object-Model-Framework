@@ -8,7 +8,7 @@ import com.planittesting.jupitertoys.model.popup.LoginPopup;
 public class LoginTest extends BaseTest {
 
     @Test(groups = "login")
-    public void login() {
+    public void loginTest() {
         String username = Settings.getUsername();
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();

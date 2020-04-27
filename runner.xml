@@ -7,11 +7,10 @@
         <listener class-name = "com.planittesting.jupitertoys.support.TestListener" />
     </listeners>
 
-    <test name = "buy product">
+    <test name = "checkout">
         <groups>
             <run>
                 <include name = "checkout" />
-                <include name = "feedback" />
             </run>
         </groups>
 
@@ -19,7 +18,19 @@
 <!--            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />-->
 <!--            <class name = "com.planittesting.jupitertoys.tests.CartDetailsTest" />-->
             <class name = "com.planittesting.jupitertoys.tests.CheckoutTest" />
+        </classes>
+    </test>
+
+    <test name = "feedback">
+        <groups>
+            <run>
+                <include name = "feedback" />
+            </run>
+        </groups>
+
+        <classes>
             <class name = "com.planittesting.jupitertoys.tests.ContactTest" />
         </classes>
     </test>
+
 </suite>

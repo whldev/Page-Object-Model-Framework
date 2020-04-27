@@ -31,7 +31,7 @@ public class ContactTest extends BaseTest {
     }
 
     @Test(dataProvider="contactData", groups = "feedback")
-    public void sendFeedback(ContactDetails contactDetails) {
+    public void sendFeedbackTest(ContactDetails contactDetails) {
         //can parse csv file to a class object (ContactDetails) try apache jackson
         //create a csv parser using jackson
         HomePage homePage = new HomePage(driver);

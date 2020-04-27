@@ -12,7 +12,7 @@ public class BuyProductsTest extends BaseTest {
     private CartDetails cartDetails = new CartDetails();
 
     @Test
-    public void buyProducts() {
+    public void buyProductsTest() {
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();
         loginPopup.login(Settings.getUsername(), Settings.getPassword());

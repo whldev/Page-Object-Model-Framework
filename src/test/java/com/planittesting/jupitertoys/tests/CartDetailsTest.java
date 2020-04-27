@@ -15,7 +15,7 @@ import java.util.List;
 public class CartDetailsTest extends BaseTest {
 
     @Test
-    public void buyProducts() {
+    public void cartDetailsTest() {
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();
         loginPopup.login(Settings.getUsername(), Settings.getPassword());
