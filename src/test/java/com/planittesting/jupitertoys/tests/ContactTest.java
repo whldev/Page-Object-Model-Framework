@@ -49,9 +49,9 @@ public class ContactTest extends BaseTest {
         confirmationPage.clickLogout().clickLogout();
 
         Assert.assertTrue(true, "Test passed");
-        ITestResult result = Reporter.getCurrentTestResult();
-        result.setAttribute("requirement", "XSI-28");
-        result.setAttribute("test", "XSI-32");
+//        ITestResult result = Reporter.getCurrentTestResult();
+//        result.setAttribute("requirement", "XSI-28");
+//        result.setAttribute("test", "XSI-32");
 
     }
 }

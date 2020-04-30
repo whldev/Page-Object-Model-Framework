@@ -56,9 +56,9 @@ public class CheckoutTest extends BaseTest {
         ExtentManager.logStep("Verify order submitted message");
         new ConfirmationPage(driver).checkOrderSubmittedMessage(deliveryDetails);
         Assert.assertTrue(true, "Test passed");
-        ITestResult result = Reporter.getCurrentTestResult();
-        result.setAttribute("requirement", "XSI-27");
-        result.setAttribute("test", "XSI-31");
+//        ITestResult result = Reporter.getCurrentTestResult();
+//        result.setAttribute("requirement", "XSI-27");
+//        result.setAttribute("test", "XSI-31");
     }
 }
 
