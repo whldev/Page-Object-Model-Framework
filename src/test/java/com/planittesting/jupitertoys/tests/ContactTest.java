@@ -50,7 +50,8 @@ public class ContactTest extends BaseTest {
 
         Assert.assertTrue(true, "Test passed");
         ITestResult result = Reporter.getCurrentTestResult();
-        result.setAttribute("requirement", "JT-51");
+        result.setAttribute("requirement", "XSI-28");
+        result.setAttribute("test", "XSI-32");
 
     }
 }

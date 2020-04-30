@@ -43,7 +43,9 @@ public class CsvDataProvider {
         MappingIterator<ContactDetails> mappingIterator = objectReader.forType(ContactDetails.class).readValues(reader);
         while (mappingIterator.hasNext()) {
             ContactDetails contactDetails = mappingIterator.next();
-            records.add(contactDetails);
+            if (contactDetails != null) {
+                records.add(contactDetails);
+            }
         }
         Object[][] results = new Object[records.size()][1];
         for (int i = 0; i < records.size(); i++) {
