@@ -8,11 +8,6 @@
     </listeners>
 
     <test name = "testall">
-<!--        <groups>-->
-<!--            <run>-->
-<!--                <include name = "checkout" />-->
-<!--            </run>-->
-<!--        </groups>-->
 
         <classes>
 <!--            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />-->
@@ -21,17 +16,5 @@
             <class name = "com.planittesting.jupitertoys.tests.ContactTest" />
         </classes>
     </test>
-
-<!--    <test name = "feedback">-->
-<!--&lt;!&ndash;        <groups>&ndash;&gt;-->
-<!--&lt;!&ndash;            <run>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name = "feedback" />&ndash;&gt;-->
-<!--&lt;!&ndash;            </run>&ndash;&gt;-->
-<!--&lt;!&ndash;        </groups>&ndash;&gt;-->
-
-<!--        <classes>-->
-<!--            <class name = "com.planittesting.jupitertoys.tests.ContactTest" />-->
-<!--        </classes>-->
-<!--    </test>-->
 
 </suite>

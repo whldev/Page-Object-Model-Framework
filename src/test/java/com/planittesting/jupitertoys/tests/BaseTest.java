@@ -42,6 +42,8 @@ public class BaseTest {
                 e.printStackTrace();
             }
         }
+        //result.setAttribute("requirement", "XSI-27");
+//        result.setAttribute("test", "XSI-31");
         driver.quit();
 //        //update on jira
 //        try {
