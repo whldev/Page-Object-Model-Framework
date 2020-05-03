@@ -15,6 +15,7 @@ public class Settings {
     private static boolean headless;
     private static String username;
     private static String password;
+    private static String api_endpoint;
 
     private static final String propertyFilePath = "config.properties";
 
@@ -36,6 +37,7 @@ public class Settings {
         headless = Boolean.parseBoolean(properties.getProperty("headless", "false"));
         username = properties.getProperty("username", "asd");
         password = properties.getProperty("password", "letmein");
+        api_endpoint = properties.getProperty("api_endpoint");
 
         if (remote_execution) {
             selenium_grid_url = properties.getProperty("selenium_grid_url");
@@ -57,4 +59,6 @@ public class Settings {
     public static String getUsername() { return username; }
 
     public static String getPassword() { return password; }
+
+    public static String getApi_endpoint() { return api_endpoint; }
 }
