@@ -21,7 +21,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactTest extends BaseTest {
+public class SendFeedbackTest extends BaseTest {
 
     private static String filePath = System.getProperty("user.dir") + "\\src\\test\\resources\\testData.csv";
 
@@ -50,7 +50,7 @@ public class ContactTest extends BaseTest {
 
         Assert.assertTrue(true, "Test passed");
         ITestResult result = Reporter.getCurrentTestResult();
-        result.setAttribute("requirement", "XSI-46");
+//        result.setAttribute("requirement", "XSI-46");
 //        result.setAttribute("test", "XSI-43");
 
     }

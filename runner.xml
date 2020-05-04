@@ -13,7 +13,7 @@
 <!--            <class name = "com.planittesting.jupitertoys.tests.BuyProductsTest" />-->
 <!--            <class name = "com.planittesting.jupitertoys.tests.CartDetailsTest" />-->
             <class name = "com.planittesting.jupitertoys.tests.CheckoutTest" />
-            <class name = "com.planittesting.jupitertoys.tests.ContactTest" />
+            <class name = "com.planittesting.jupitertoys.tests.SendFeedbackTest" />
         </classes>
     </test>
 
