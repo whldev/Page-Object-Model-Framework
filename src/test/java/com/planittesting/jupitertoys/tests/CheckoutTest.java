@@ -58,8 +58,6 @@ public class CheckoutTest extends BaseTest {
         Assert.assertTrue(true, "Test passed");
         ITestResult result = Reporter.getCurrentTestResult();
         result.setAttribute("requirement", "XSI-50");
-        result.setAttribute("requirement", "XSI-51");
-//        result.setAttribute("test", "XSI-42");
     }
 }
 
