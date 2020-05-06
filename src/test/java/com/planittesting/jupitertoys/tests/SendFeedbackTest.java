@@ -34,6 +34,9 @@ public class SendFeedbackTest extends BaseTest {
     public void sendFeedbackTest(ContactDetails contactDetails) {
         //can parse csv file to a class object (ContactDetails) try apache jackson
         //create a csv parser using jackson
+        if (contactDetails.getForename().equalsIgnoreCase("hong")) {
+            throw new RuntimeException("failed on purpose");
+        }
         HomePage homePage = new HomePage(driver);
         LoginPopup loginPopup = homePage.navigateToLoginPage();
         loginPopup.login(Settings.getUsername(), Settings.getPassword());
