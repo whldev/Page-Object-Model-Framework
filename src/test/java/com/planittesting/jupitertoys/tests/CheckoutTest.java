@@ -10,6 +10,7 @@ import com.planittesting.jupitertoys.support.ExtentManager;
 import com.planittesting.jupitertoys.support.Settings;
 import com.planittesting.jupitertoys.support.Xray;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -59,8 +60,6 @@ public class CheckoutTest extends BaseTest {
         new ConfirmationPage(driver).checkOrderSubmittedMessage(deliveryDetails);
         Assert.assertTrue(true, "Test passed");
         ITestResult result = Reporter.getCurrentTestResult();
-//        result.setAttribute("requirement", "XSI-50");
-        //change
     }
 }
 

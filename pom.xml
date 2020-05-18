@@ -112,9 +112,9 @@
                         </properties>
 <!--                        <groups>checkout</groups>-->
 <!--                        <groups>feedback</groups>-->
-<!--                        <suiteXmlFiles>-->
-<!--                            <suiteXmlFile>runner.xml</suiteXmlFile>-->
-<!--                        </suiteXmlFiles>-->
+                        <suiteXmlFiles>
+                            <suiteXmlFile>runner.xml</suiteXmlFile>
+                        </suiteXmlFiles>
                     </configuration>
                 </plugin>
             </plugins>
