@@ -3,6 +3,7 @@ package com.planittesting.jupitertoys.tests;
 import com.planittesting.jupitertoys.support.Browser;
 import com.planittesting.jupitertoys.support.ExtentManager;
 import com.planittesting.jupitertoys.support.Settings;
+import com.planittesting.jupitertoys.support.Xray;
 import com.planittesting.jupitertoys.support.jira.JiraApiServices;
 import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,8 +21,8 @@ public class BaseTest {
     public void globalSetup() {
         Settings.readSettings();
         ExtentManager.initializeReporting();
-
     }
+
     @BeforeMethod(alwaysRun = true)
     public void setup(ITestResult result) {
         driver = Browser.launchBrowser();
