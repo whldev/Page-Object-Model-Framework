@@ -8,6 +8,7 @@ import com.planittesting.jupitertoys.model.pages.*;
 import com.planittesting.jupitertoys.model.popup.ProcessingPopup;
 import com.planittesting.jupitertoys.support.ExtentManager;
 import com.planittesting.jupitertoys.support.Settings;
+import com.planittesting.jupitertoys.support.Xray;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -22,6 +23,7 @@ public class CheckoutTest extends BaseTest {
     private DeliveryDetails deliveryDetails = new DeliveryDetails();
     private PaymentDetails paymentDetails = new PaymentDetails();
 
+    @Xray(testCaseId = "XSI-128", userStoryId = "")
     @Test(groups = "checkout")
     public void checkoutTest() {
         ExtentManager.logStep("Login to Jupitor Toys");
@@ -57,7 +59,7 @@ public class CheckoutTest extends BaseTest {
         new ConfirmationPage(driver).checkOrderSubmittedMessage(deliveryDetails);
         Assert.assertTrue(true, "Test passed");
         ITestResult result = Reporter.getCurrentTestResult();
-        result.setAttribute("requirement", "XSI-50");
+//        result.setAttribute("requirement", "XSI-50");
         //change
     }
 }
