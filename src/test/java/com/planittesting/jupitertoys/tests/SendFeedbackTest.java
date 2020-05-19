@@ -31,7 +31,7 @@ public class SendFeedbackTest extends BaseTest {
         return CsvDataProvider.readCsv(filePath);
     }
 
-    @Xray(testCaseId = "XSI-129", userStoryId = "")
+    @Xray(testCaseId = "", userStoryId = "XSI-132")
     @Test(dataProvider="contactData", groups = "feedback")
     public void sendFeedbackTest(ContactDetails contactDetails) {
         //can parse csv file to a class object (ContactDetails) try apache jackson
