@@ -24,7 +24,7 @@ public class CheckoutTest extends BaseTest {
     private DeliveryDetails deliveryDetails = new DeliveryDetails();
     private PaymentDetails paymentDetails = new PaymentDetails();
 
-    @Xray(testCaseId = "", userStoryId = "XSI-131")
+    @Xray(testCaseId = "XSI-128", userStoryId = "")
     @Test(groups = "checkout")
     public void checkoutTest() {
         ExtentManager.logStep("Login to Jupitor Toys");

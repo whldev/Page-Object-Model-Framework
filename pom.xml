@@ -110,8 +110,6 @@
                                 <value>org.testng.reporters.XMLReporter:generateTestResultAttributes=true,generateGroupsAttribute=true,outputDirectory=testngOutput</value>
                             </property>
                         </properties>
-<!--                        <groups>checkout</groups>-->
-<!--                        <groups>feedback</groups>-->
                         <suiteXmlFiles>
                             <suiteXmlFile>runner.xml</suiteXmlFile>
                         </suiteXmlFiles>
